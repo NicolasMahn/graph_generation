@@ -3,6 +3,8 @@ import time
 import base64
 import os
 
+import agents
+from agents import llm_api_wrapper
 from chat import Chat
 
 class Project(Chat):
@@ -52,4 +54,10 @@ class Project(Chat):
 
     def get_uploaded_files(self):
         return self.uploaded_files
+        pass
+
+    def add_message(self, sender, text):
+        super().add_message(sender, text)
+        response = llm_api_wrapper.basic_prompt(text, role="You are a demo. answer briefly.")
+        super().add_message("AI", response)
         pass

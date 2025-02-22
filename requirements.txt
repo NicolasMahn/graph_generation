@@ -4,3 +4,7 @@ dash
 dash-bootstrap-components
 dash-extensions
 flask
+chromadb
+openai
+tiktoken
+google-genai
