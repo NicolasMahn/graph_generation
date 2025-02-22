@@ -73,20 +73,26 @@ def update_uploaded_files(upload_contents):
     files = backend.get_uploaded_files()
     return [html.Div(file) for file in files]
 
+# Callback to update the chat history
+@app.callback(
+    Output("chat-history", "children"),
+    Input("chat-interval", "n_intervals")
+)
+def update_chat_history(n_intervals):
+    messages = backend.get_chat_history()
+    return [html.Div(f"{msg['sender']}: {msg['text']}") for msg in messages]
+
 
 # Callback to handle chat interactions and resetting.
 @app.callback(
     [Input("send-chat-button", "n_clicks"),
      Input("upload-data", "contents"),
-     Input("reset-button", "n_clicks"),
-     Input("start-task-button", "n_clicks"),
-     Input("check-status-button", "n_clicks")],
+     Input("reset-button", "n_clicks")],
     [State("chat-input", "value"),
      State('upload-data', 'filename')],
     prevent_initial_call=True
 )
-def handle_interactions(send_chat_clicks, upload_contents, reset_clicks,
-                        start_task_clicks, check_status_clicks, chat_input, filename):
+def handle_interactions(send_chat_clicks, upload_contents, reset_clicks, chat_input, filename):
     triggered = callback_context.triggered[0]['prop_id']
 
     if triggered.startswith("reset-button"):
