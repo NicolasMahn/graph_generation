@@ -25,5 +25,5 @@ ENV CHROMADB_PORT=${CHROMADB_PORT}
 ENV OPENAI_KEY=${OPENAI_KEY}
 ENV GOOGLE_KEY=${GOOGLE_KEY}
 
-# Run scrt.py when the container launches
-CMD ["python", "scrt.py"]
+# Run main.py when the container launches
+CMD ["python", "main.py"]
