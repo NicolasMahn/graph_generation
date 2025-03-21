@@ -37,7 +37,9 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build --build-arg CHROMADB_HOST=${{ secrets.CHROMADB_HOST }} \
+        docker build --build-arg BACKEND_HOST=${{ secrets.BACKEND_HOST }} \
+                     --build-arg BACKEND_PORT=${{ secrets.BACKEND_PORT }} \
+                     --build-arg CHROMADB_HOST=${{ secrets.CHROMADB_HOST }} \
                      --build-arg CHROMADB_PORT=${{ secrets.CHROMADB_PORT }} \
                      --build-arg OPENAI_KEY=${{ secrets.OPENAI_KEY }} \
                      --build-arg GOOGLE_KEY=${{ secrets.GOOGLE_KEY }} \

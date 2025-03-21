@@ -1,6 +1,4 @@
 import os
 
-CHROMADB_HOST = os.getenv("CHROMADB_HOST")
-CHROMADB_PORT = int(os.getenv("CHROMADB_PORT"))
-OPENAI_KEY = os.getenv("OPENAI_KEY")
-GOOGLE_KEY = os.getenv("GOOGLE_KEY")
+BACKEND_HOST = os.getenv("BACKEND_HOST", "127.0.0.1")
+BACKEND_PORT = int(os.getenv("BACKEND_PORT", 5000))
